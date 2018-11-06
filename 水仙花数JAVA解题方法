@@ -1,0 +1,37 @@
+1.简单法
+
+    public static void main(String[] args) {
+        for (int i = 1; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                for (int k = 0; k < 9; k++) {
+                    if (Math.pow(i, 3) + Math.pow(j, 3) + Math.pow(k, 3) == i * 100 + j * 10 + k) {
+                        System.out.println((i * 100 + j * 10 + k));
+                    }
+                }
+            }
+        }
+    }
+
+2.函数法：
+
+    public static boolean isDaffodils(int n) {
+        int hundreds = n / 100;
+        //百位取值 例n=153 153/100=>1.53 整形小数点后舍去则为1
+
+        int tens = n / 10 - hundreds * 10;
+        //十位取值 例n=153 153/10=>15.3-hundreds*10=>5.3 整形小数点后舍去则为5
+
+        int ones = n % 10;
+        //各位取值 例n=153 153%10=>3 整形小数点后舍去则为3
+
+        return Math.pow(hundreds, 3) + Math.pow(tens, 3) + Math.pow(ones, 3) == n;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 100; i < 1000; i++) {
+            if (isDaffodils(i)) {
+                System.out.println(i);
+            }
+        }
+    }
